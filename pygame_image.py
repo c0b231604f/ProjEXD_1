@@ -20,17 +20,19 @@ def main():
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT: return
-        
+        x = tmr%4800
         key_lst = pg.key.get_pressed()
         if key_lst[pg.K_UP]:
-            kk_ret.move_ip((0, -1))
+            kk_ret.move_ip([0, -1])
         if key_lst[pg.K_DOWN]:
-            kk_ret.move_ip((0, 1))
+            kk_ret.move_ip([0, 1])
         if key_lst[pg.K_LEFT]:
-            kk_ret.move_ip((-1, 0))
+            kk_ret.move_ip([-1, 0])
         if key_lst[pg.K_RIGHT]:
-            kk_ret.move_ip((1, 0))
-        x = tmr%4800
+            kk_ret.move_ip([1, 0])
+        else:
+            kk_ret.move_ip([-1, 0])
+        
         screen.blit(bg_img, [-x, 0])
         screen.blit(bg_img2, [-x + 1600, 0]) #練習7-1
         screen.blit(bg_img, [-x + 3200, 0]) #練習7－2
@@ -39,7 +41,7 @@ def main():
         screen.blit(kk_img, kk_ret) #練習４
         pg.display.update()
         tmr += 1
-        clock.tick(200) #練習5
+        clock.tick(100) #練習5
 
 
 if __name__ == "__main__":
